@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>So You Want To Be A Doctor?</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>So You Want To Be A Doctor?</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/courses">Courses</a>
+      <a href="/quizzes">Quizzes</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="courses-list">
+      <h2>Available Courses</h2>
+      <ul id="course-container"></ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #00796b;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+main {
+  padding: 20px;
+}
+
+#courses-list {
+  max-width: 800px;
+  margin: auto;
+}
+
+h2 {
+  color: #00796b;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background: #f1f1f1;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #00796b;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+main {
+  padding: 20px;
+}
+
+#courses-list {
+  max-width: 800px;
+  margin: auto;
+}
+
+h2 {
+  color: #00796b;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background: #f1f1f1;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+document.addEventListener('DOMContentLoaded', async () => {
+  const courseContainer = document.getElementById('course-container');
+
+  try {
+    const response = await fetch('/api/courses');
+    const courses = await response.json();
+
+    courses.forEach(course => {
+      const li = document.createElement('li');
+      li.innerHTML = `<strong>${course.title}</strong>: ${course.description}`;
+      courseContainer.appendChild(li);
+    });
+  } catch (error) {
+    courseContainer.innerHTML = 'Error loading courses.';
+  }
+});
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+const courses = [
+  { id: 1, title: 'Anatomy Basics', description: 'Introduction to human anatomy.' },
+  { id: 2, title: 'Physiology Fundamentals', description: 'Understanding bodily functions.' },
+  { id: 3, title: 'Pharmacology Essentials', description: 'Introduction to drug mechanisms.' },
+];
+
+app.use(express.static('public'));
+
+app.get('/api/courses', (req, res) => {
+  res.json(courses);
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+So-You-Want-To-Be-A-Doctor?
+├── public
+│   ├── index.html
+│   ├── script.js
+│   └── styles.css
+├── server.js
+└── package.json
